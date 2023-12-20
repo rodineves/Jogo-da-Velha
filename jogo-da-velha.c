@@ -48,133 +48,102 @@ void titulo(){
 void inicializarMatriz(){  //colocar valores vazios na matriz
 	
 		for(i = 0; i < 3; i++) {
-	    	
 	        for(j = 0; j < 3; j++) {
-	        	
 	            tabela[i][j] = ' ';
-	            
 	        }
 	    }
-				
 }
 
 void imprimirTabela(){
 	
 	// i = linha ; j = coluna //
-	    printf("\n\t\t\t\t    1  2  3 \n\n");
-	    
-	    for(i = 0; i < 3; i++){
-	    	
-		        printf("\t\t\t\t%d ", i+1);
-		        
-			        for(j = 0; j < 3; j++) {
-			        	
-				            if(j < 2){
-				            	
-				            	printf(" %c |", tabela[i][j]);
-				            	
-							} else{
-								
-								printf(" %c ", tabela[i][j]);
-								
-							}      
-			        }
-		        
-		        if(i < 2){
-		        	
-		        	printf("\n\t\t\t\t   ---------\n");
-		        	
+    printf("\n\t\t\t\t    1  2  3 \n\n");
+    for(i = 0; i < 3; i++){
+        printf("\t\t\t\t%d ", i+1);
+	        for(j = 0; j < 3; j++) {
+	            if(j < 2){
+	            	printf(" %c |", tabela[i][j]);
+	            	
+				} else{
+					printf(" %c ", tabela[i][j]);
 				}      
-	    }	
-			
+	        }
+        
+        if(i < 2){
+        	printf("\n\t\t\t\t   ---------\n");
+        	
+		}      
+    }	
 }
 
 int ganhouPorLinha(){
 	
-		int aux = 1;
-		int ganhou = 0;
-			
-				for(i = 0 ; i < 3 ; i++){
-					
-					for(j = 0 ; j < 2 ; j++){
-						
-						if(tabela[i][j] == 'X' || tabela[i][j] == 'O'){
-							
-							if(tabela[i][j] == tabela[i][j+1]){
-								
-								aux++;
-								
-							}
-						}
-					}
-					
-					if(aux == 3){
-						
-						ganhou++;
-						
-					}
-					
-					aux = 1;
-				}	
-			
-		return ganhou;
+	int aux = 1;
+	int ganhou = 0;
+	
+	for(i = 0 ; i < 3 ; i++){
+		for(j = 0 ; j < 2 ; j++){	
+		
+			if(tabela[i][j] == 'X' || tabela[i][j] == 'O'){
+				if(tabela[i][j] == tabela[i][j+1]){
+					aux++;	
+				}
+			}
+		}
+		
+		if(aux == 3){
+			ganhou++;
+		}
+		
+		aux = 1;
+	}	
+		
+	return ganhou;
 }
 
 int ganhouPorColuna(){
 	
-		int aux = 1;
-		int ganhou = 0;
-		
-				for(i=0 ; i<3 ; i++){
-					
-						for(j=0 ; j<3 ; j++){
-							
-								if(tabela[j][i] == 'X' || tabela[j][i] == 'O'){
-									
-										if(tabela[j][i] == tabela[j+1][i]){
-											
-											aux++;
-											
-										}
-								}
-						}
-						
-						if(aux == 3){
-									
-							ganhou++;
-									
-						}
-					
-						aux = 1;
-				}	
+	int aux = 1;
+	int ganhou = 0;
+	
+	for(i=0 ; i<3 ; i++){
+		for(j=0 ; j<3 ; j++){
 			
-		return ganhou;	
+			if(tabela[j][i] == 'X' || tabela[j][i] == 'O'){
+				
+				if(tabela[j][i] == tabela[j+1][i]){
+					aux++;
+				}
+			}
+		}
+		
+		if(aux == 3)		
+			ganhou++;
+					
+		aux = 1;
+	}	
+		
+	return ganhou;	
 }
 
 int ganhouPorDiagonal_1(){
 	
-		int aux = 1;
-		int ganhou = 0;
-				
-		for(i = 0; i < 2; i++){
+	int aux = 1;
+	int ganhou = 0;
 			
-				if(tabela[i][i] == 'X' || tabela[i][i] == 'O'){
-					
-						 if(tabela[i][i] == tabela[i+1][i+1]){
-				        	
-				        		aux++;
-				        	
-						}
-				}
-	    }
+	for(i = 0; i < 2; i++){
 		
-		if(aux == 3){
-			
-			ganhou++;
-			
-		}	
-
-		return ganhou;
+		if(tabela[i][i] == 'X' || tabela[i][i] == 'O'){	
+			if(tabela[i][i] == tabela[i+1][i+1]){    	
+	        	aux++;	
+			}
+		}
+    }
+	
+	if(aux == 3)
+		ganhou++;
+	
+	return ganhou;
 }
 
 int ganhouPorDiagonal_2(){
@@ -185,18 +154,13 @@ int ganhouPorDiagonal_2(){
 		
 		if(tabela[i][i] == 'X' || tabela[i][i] == 'O'){
 			
-		        if(tabela[i][i] == tabela[a][b] && tabela[i][i] == tabela[b][a]){
-		        	
-		        		aux = 3;
-		        	
-				}			
+	        if(tabela[i][i] == tabela[a][b] && tabela[i][i] == tabela[b][a]){
+	        	aux = 3;
+			}			
 		}	    
 	
-		if(aux == 3){
-			
+		if(aux == 3)
 			ganhou++;
-			
-		}
 
 		return ganhou;
 }
@@ -216,12 +180,12 @@ int main(){
 	printf("  Digite qualquer botão para começar...");getch();
 	system("cls");
 	
-	do{ // se o usuário recoomeçar o jogo e trocar os nomes.
+	do{ // se o usuário recomeçar o jogo e trocar os nomes.
 		
 			printf("\n\n");
 			
-					if(op != 2)
-					printf("\t\t\t\t   Bem-vindo(a) ao jogo da velha!");
+			if(op != 2)
+				printf("\t\t\t\t   Bem-vindo(a) ao jogo da velha!");
 					
 			printf("\n\n\n\t Digite o nome do Jogador 1: ");
 			fflush(stdin);
@@ -401,13 +365,13 @@ int main(){
 										
 										if(ganhouPorColuna() != 0){
 											
-												printf("\n\n\n\t\tPARABÉNS, o jogador %s venceu por coluna!! \n\n", jogador2);
-											
+											printf("\n\n\n\t\tPARABÉNS, o jogador %s venceu por coluna!! \n\n", jogador2);
+								
 										}
 										
 										if(ganhouPorDiagonal_1() != 0 || ganhouPorDiagonal_2() != 0){
 											
-												printf("\n\n\n\t\tPARABÉNS, o jogador %s venceu por diagonal!! \n\n", jogador2);
+											printf("\n\n\n\t\tPARABÉNS, o jogador %s venceu por diagonal!! \n\n", jogador2);
 											
 										}
 										
